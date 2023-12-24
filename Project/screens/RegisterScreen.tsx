@@ -32,7 +32,7 @@ const RegisterScreen = ({ route }: any) => {
             setcheckPhone(false);
         }
 
-        const res = await fetch('http://192.168.1.103:3000/hanhkhach/searchSDT/' + isPhone);
+        const res = await fetch('http://192.168.1.2:3000/hanhkhach/searchSDT/' + isPhone);
         const data = await res.json();
         if (data.length > 0) {
             setIsPhoneRegistered(true);
@@ -72,7 +72,7 @@ const RegisterScreen = ({ route }: any) => {
             TrangThai: 1
         };
 
-        axios.post('http://192.168.1.103:3000/hanhkhach/', formcheck).then((response) => {
+        axios.post('http://192.168.1.2:3000/hanhkhach/', formcheck).then((response) => {
             let Data = {
                 id: response.data.insertId,
                 TenHanhKhach: isName,

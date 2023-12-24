@@ -27,7 +27,7 @@ const BookTicket = ({ route, navigation }: any) => {
         let id = data?.split(',');
 
         try {
-            const res = await fetch('http://192.168.1.103:3000/diemxe/huyen/' + id[0]);
+            const res = await fetch('http://192.168.1.2:3000/diemxe/huyen/' + id[0]);
             const data = await res.json();
             setBatDau(data);
         } catch (err) {
@@ -35,7 +35,7 @@ const BookTicket = ({ route, navigation }: any) => {
         }
 
         try {
-            const res = await fetch('http://192.168.1.103:3000/diemxe/huyen/' + id[1]);
+            const res = await fetch('http://192.168.1.2:3000/diemxe/huyen/' + id[1]);
             const data = await res.json();
             setBatCuoi(data);
         } catch (err) {
@@ -60,19 +60,19 @@ const BookTicket = ({ route, navigation }: any) => {
     const datvexe = async () => {
         try {
             for (let index = 0; index < data.length; index++) {
-                axios.get('http://192.168.1.103:3000/chongoi/check/' + Id_ChuyenDi + '/' + data[index].Id).then((response) => {
+                axios.get('http://192.168.1.2:3000/chongoi/check/' + Id_ChuyenDi + '/' + data[index].Id).then((response) => {
                     if (response.data.Id != undefined) {
                         Alert.alert('Thông báo', 'Lỗi hệ thống khi đặt vé')
                         navigation.navigate('Home')
                     }
                 })
             }
-            axios.get('http://192.168.1.103:3000/chuyendi/' + Id_ChuyenDi).then((response) => {
+            axios.get('http://192.168.1.2:3000/chuyendi/' + Id_ChuyenDi).then((response) => {
                 let updatechuyendi = {
                     Id: response.data.Id,
                     SoGheTrong: response.data.SoGheTrong - data.length
                 }
-                axios.put('http://192.168.1.103:3000/chuyendi/updateSoGheTrong', updatechuyendi).then((response) => {
+                axios.put('http://192.168.1.2:3000/chuyendi/updateSoGheTrong', updatechuyendi).then((response) => {
                 })
             });
 
@@ -87,7 +87,7 @@ const BookTicket = ({ route, navigation }: any) => {
                 ChoNgoi: 1,
 
             }
-            axios.post('http://192.168.1.103:3000/vexe/', formVeXe).then((response) => {
+            axios.post('http://192.168.1.2:3000/vexe/', formVeXe).then((response) => {
                 for (let index = 0; index < data.length; index++) {
                     let formChongoi = {
                         Id_VeXe: response.data.insertId,
@@ -96,15 +96,15 @@ const BookTicket = ({ route, navigation }: any) => {
                         Id_ChuyenDi: Id_ChuyenDi,
 
                     }
-                    axios.post('http://192.168.1.103:3000/chongoi/', formChongoi).then((response) => {
+                    axios.post('http://192.168.1.2:3000/chongoi/', formChongoi).then((response) => {
                     });
                 }
-                axios.get('http://192.168.1.103:3000/chuyendi/' + Id_ChuyenDi).then((response) => {
+                axios.get('http://192.168.1.2:3000/chuyendi/' + Id_ChuyenDi).then((response) => {
                     let updatechuyendi = {
                         Id: response.data.Id,
                         SoGheTrong: response.data.SoGheTrong - data.length
                     }
-                    axios.put('http://192.168.1.103:3000/chuyendi/updateSoGheTrong', updatechuyendi).then((response) => {
+                    axios.put('http://192.168.1.2:3000/chuyendi/updateSoGheTrong', updatechuyendi).then((response) => {
                         Alert.alert('Thông báo', 'Đặt Vé Thành Công')
                         navigation.navigate('MyTric')
                     })

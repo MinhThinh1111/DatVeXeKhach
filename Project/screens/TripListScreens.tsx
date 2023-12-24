@@ -13,7 +13,7 @@ const TripListScreens = ({ route }: any) => {
 
     const getChuyenDiByIdLoTrinhNgayDi = async () => {
         try {
-            const res = await fetch('http://192.168.1.103:3000/chuyendi/search/' + idLoTrinh + '/' + NgayDi);
+            const res = await fetch('http://192.168.1.2:3000/chuyendi/search/' + idLoTrinh + '/' + NgayDi);
             const data = await res.json();
             setchuyenDi(data);
         } catch (err) {

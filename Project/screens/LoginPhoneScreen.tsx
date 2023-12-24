@@ -20,7 +20,7 @@ const LoginPhoneScreen = () => {
         let regexPhone = new RegExp('(0[1|3|5|7|8|9])+([0-9]{8})');
 
         if (regexPhone.test(isPhone)) {
-            const res = await fetch('http://192.168.1.103:3000/hanhkhach/searchSDT/' + isPhone);
+            const res = await fetch('http://192.168.1.2:3000/hanhkhach/searchSDT/' + isPhone);
             const data = await res.json();
 
             if (data.length > 0) {

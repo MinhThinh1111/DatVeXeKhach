@@ -14,7 +14,7 @@ const UpdateProfileScreen = ({ navigation }: any) => {
 
   const handleUpdateProfile = async () => {
     try {
-      const response = await axios.put("http://192.168.1.103:3000/hanhkhach", {
+      const response = await axios.put("http://192.168.1.2:3000/hanhkhach", {
         Id: IsNote.id,
         Ten: newName,
         Sdt: newPhone,
